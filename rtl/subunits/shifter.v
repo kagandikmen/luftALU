@@ -1,13 +1,13 @@
 // Shifter of the ALU
 // Created:     2024-01-18
-// Modified:    2024-01-27 (last status: working fine)
+// Modified:    2025-05-28
 // Author:      Kagan Dikmen
 
 module shifter
     #(
     parameter OPD_LENGTH = 32
     )(
-    input [OPD_LENGTH-1:0] opd1,
+    input signed [OPD_LENGTH-1:0] opd1,
     input [OPD_LENGTH-1:0] opd2,
     input [3:0] alu_op_select,      // 0001 for SRL/SRLI, 0011 for SLL/SLLI, 0111 for SRA/SRAI
 
@@ -25,9 +25,9 @@ module shifter
     always @(*)
     begin
         case (alu_op_select[2:0])
-            SRL_SRLI:   shifter_result_bf <= opd1 >> opd2;
-            SLL_SLLI:   shifter_result_bf <= opd1 << opd2;
-            SRA_SRAI:   shifter_result_bf <= opd1 >> opd2;
+            SRL_SRLI:   shifter_result_bf <= opd1 >> opd2[4:0];
+            SLL_SLLI:   shifter_result_bf <= opd1 << opd2[4:0];
+            SRA_SRAI:   shifter_result_bf <= opd1 >>> opd2[4:0];
             default: 
             begin
                 shifter_result_bf <= 'b0;

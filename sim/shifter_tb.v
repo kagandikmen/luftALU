@@ -1,6 +1,6 @@
 // Testbench for the shifter of the ALU
 // Created:     2024-01-18
-// Modified:    2024-08-15
+// Modified:    2025-05-28
 // Author:      Kagan Dikmen
 
 `include "../rtl/subunits/shifter.v"
@@ -67,6 +67,24 @@ module shifter_tb
         #5;
         opd1_t <= 8'he0;
         opd2_t <= 8'h00;
+        alu_op_select_t <= 4'b0111;      // SRA/SRAI
+        
+        
+        // opd2 negative
+
+        #5;
+        opd1_t <= 8'h0f;
+        opd2_t <= 8'he2;
+        alu_op_select_t <= 4'b0011;      // SLL/SLLI
+
+        #5;
+        opd1_t <= 8'hf0;
+        opd2_t <= 8'he2;
+        alu_op_select_t <= 4'b0001;      // SRL/SRLI
+
+        #5;
+        opd1_t <= 8'he0;
+        opd2_t <= 8'he2;
         alu_op_select_t <= 4'b0111;      // SRA/SRAI
 
 
