@@ -1,6 +1,6 @@
 // Shifter of the ALU
 // Created:     2024-01-18
-// Modified:    2025-05-28
+// Modified:    2025-05-30
 // Author:      Kagan Dikmen
 
 module shifter
@@ -31,7 +31,6 @@ module shifter
             default: 
             begin
                 shifter_result_bf <= 'b0;
-                $display("WARNING: alu_op_select value %b at time %t doesn't match with any valid shift operation.", alu_op_select, $realtime);
             end
         endcase
     end

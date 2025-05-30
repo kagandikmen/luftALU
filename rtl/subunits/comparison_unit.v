@@ -1,6 +1,6 @@
 // Comparison unit of the ALU
 // Created:     2024-01-18
-// Modified:    2024-01-27 (last status: working fine)
+// Modified:    2025-05-30
 // Author:      Kagan Dikmen
 
 module comparison_unit
@@ -39,7 +39,6 @@ module comparison_unit
         default:
         begin
             comp_result_bf <= 'b0;
-            $display("WARNING: alu_op_select value %b at time %t doesn't match with any valid comparison type.", alu_op_select, $realtime);
         end
         endcase
     end
