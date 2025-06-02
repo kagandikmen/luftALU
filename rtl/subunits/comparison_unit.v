@@ -1,6 +1,6 @@
 // Comparison unit of the ALU
 // Created:     2024-01-18
-// Modified:    2025-05-30
+// Modified:    2025-06-03
 // Author:      Kagan Dikmen
 
 module comparison_unit
@@ -30,15 +30,15 @@ module comparison_unit
     always @(*)
     begin
         case (alu_op_select[2:0])
-        IS_EQ:      comp_result_bf <= (opd1 == opd2) ? 'b1 : 'b0;
-        IS_NE:      comp_result_bf <= (opd1 != opd2) ? 'b1 : 'b0;
-        IS_GE:      comp_result_bf <= ($signed(opd1) >= $signed(opd2)) ? 'b1 : 'b0;
-        IS_GEU:     comp_result_bf <= ($unsigned(opd1) >= $unsigned(opd2)) ? 'b1 : 'b0;
-        IS_LT:      comp_result_bf <= ($signed(opd1) < $signed(opd2)) ? 'b1 : 'b0;
-        IS_LTU:     comp_result_bf <= ($unsigned(opd1) < $unsigned(opd2)) ? 'b1 : 'b0;
+        IS_EQ:      comp_result_bf = (opd1 == opd2) ? 'b1 : 'b0;
+        IS_NE:      comp_result_bf = (opd1 != opd2) ? 'b1 : 'b0;
+        IS_GE:      comp_result_bf = ($signed(opd1) >= $signed(opd2)) ? 'b1 : 'b0;
+        IS_GEU:     comp_result_bf = ($unsigned(opd1) >= $unsigned(opd2)) ? 'b1 : 'b0;
+        IS_LT:      comp_result_bf = ($signed(opd1) < $signed(opd2)) ? 'b1 : 'b0;
+        IS_LTU:     comp_result_bf = ($unsigned(opd1) < $unsigned(opd2)) ? 'b1 : 'b0;
         default:
         begin
-            comp_result_bf <= 'b0;
+            comp_result_bf = 'b0;
         end
         endcase
     end

@@ -1,6 +1,6 @@
 // Shifter of the ALU
 // Created:     2024-01-18
-// Modified:    2025-05-30
+// Modified:    2025-06-03
 // Author:      Kagan Dikmen
 
 module shifter
@@ -25,12 +25,12 @@ module shifter
     always @(*)
     begin
         case (alu_op_select[2:0])
-            SRL_SRLI:   shifter_result_bf <= opd1 >> opd2[4:0];
-            SLL_SLLI:   shifter_result_bf <= opd1 << opd2[4:0];
-            SRA_SRAI:   shifter_result_bf <= opd1 >>> opd2[4:0];
+            SRL_SRLI:   shifter_result_bf = opd1 >> opd2[4:0];
+            SLL_SLLI:   shifter_result_bf = opd1 << opd2[4:0];
+            SRA_SRAI:   shifter_result_bf = opd1 >>> opd2[4:0];
             default: 
             begin
-                shifter_result_bf <= 'b0;
+                shifter_result_bf = 'b0;
             end
         endcase
     end
