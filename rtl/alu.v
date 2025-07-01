@@ -1,6 +1,6 @@
 // ALU of the CPU
 // Created:     2024-01-17
-// Modified:    2024-08-15 (last status: working fine)
+// Modified:    2025-06-28
 // Author:      Kagan Dikmen
 
 `include "./subunits/adder.v"
@@ -17,9 +17,9 @@ module alu
     input [OPERAND_LENGTH-1:0] opd2,
     input [OPERAND_LENGTH-1:0] opd3,
     input [OPERAND_LENGTH-1:0] opd4,
-    input alu_mux1_select,
-    input [1:0] alu_mux2_select,
-    input [3:0] alu_op_select,
+    input cu_input_sel,
+    input [1:0] subunit_res_sel,
+    input [3:0] subunit_op_sel,
     
     output [OPERAND_LENGTH-1:0] alu_result,
     output [OPERAND_LENGTH-1:0] comp_result   // zero-extended
@@ -40,7 +40,7 @@ module alu
                     (
                         .opd1(opd1),
                         .opd2(opd2),
-                        .alu_op_select(alu_op_select),
+                        .alu_op_select(subunit_op_sel),
                         .adder_result(adder_result)
                     );
 
@@ -49,7 +49,7 @@ module alu
                     (
                         .opd1(cu_input1),
                         .opd2(cu_input2),
-                        .alu_op_select(alu_op_select),
+                        .alu_op_select(subunit_op_sel),
                         .comp_result(comp_result)
                     );
 
@@ -58,7 +58,7 @@ module alu
                     (
                         .opd1(opd1),
                         .opd2(opd2),
-                        .alu_op_select(alu_op_select),
+                        .alu_op_select(subunit_op_sel),
                         .logic_result(logic_result)
                     );
 
@@ -67,7 +67,7 @@ module alu
                     (
                         .opd1(opd1),
                         .opd2(opd2),
-                        .alu_op_select(alu_op_select),
+                        .alu_op_select(subunit_op_sel),
                         .shifter_result(shifter_result)
                     );
 
@@ -77,7 +77,7 @@ module alu
                     (
                         .a(opd1),
                         .b(opd3),
-                        .sel(alu_mux1_select),
+                        .sel(cu_input_sel),
                         .z(cu_input1)
                     );
 
@@ -86,7 +86,7 @@ module alu
                     (
                         .a(opd2),
                         .b(opd4),
-                        .sel(alu_mux1_select),
+                        .sel(cu_input_sel),
                         .z(cu_input2)
                     );
 
@@ -97,7 +97,7 @@ module alu
                         .b(logic_result),
                         .c(shifter_result),
                         .d(comp_result),
-                        .sel(alu_mux2_select),
+                        .sel(subunit_res_sel),
                         .z(alu_result)
                     );
     
