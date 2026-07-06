@@ -1,6 +1,6 @@
 // ALU of the CPU
 // Created:     2024-01-17
-// Modified:    2025-06-28
+// Modified:    2026-07-07
 // Author:      Kagan Dikmen
 
 `include "./subunits/adder.v"
@@ -25,7 +25,6 @@ module alu
     output [OPERAND_LENGTH-1:0] comp_result   // zero-extended
     );
 
-    wire [OPERAND_LENGTH-1:0] adder_input1;
     wire [OPERAND_LENGTH-1:0] adder_result;
     
     wire [OPERAND_LENGTH-1:0] cu_input1;   // cu stands for "compare unit"
